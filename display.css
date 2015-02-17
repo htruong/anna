@@ -1,0 +1,52 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+  font-family: 'EB Garamond', serif;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+
+.container {
+  width: 680px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+
+
+#q {
+  width: 100%;
+  font-size: 1.3em;
+}
+
+header strong {
+  font-size: 1.5em;
+}
+
+header {
+  margin: 1.5em auto;
+
+}
