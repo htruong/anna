@@ -28,9 +28,67 @@
 
     <div>
     <form onsubmit="return submitQuery();">
-      <div>Query (<a href="showSamples();">sample queries</a>):</div> 
-      <input id="q" name="q" />
+      <div>Query (<a href="#" onclick="showSamples();">sample queries</a>):</div>
+      <pre id="samples">
+Tìm các từ có hai âm tiết, trong đó âm tiết thứ hai dùng tất cả các chữ cái của âm tiết thứ nhất
+
+dict.search('
+  (w.slen() == 2) 
+  && (w.syls(0).toAscii().string() != w.syls(1).toAscii().string()) 
+  && (w.syls(0).toAscii().anagram() == w.syls(1).toAscii().anagram()
+)')
+
+
+Tìm 100 từ có 3 âm tiết, âm tiết đầu tiên bắt đầu bằng "d"
+
+dict.search('
+  (w.slen() == 3) 
+  && (w.syls(0).head().string() == "d")
+', 100)
+
+Tìm các từ có một âm tiết, độ dài lớn hơn 6 ký tự
+
+dict.search('
+  (w.slen() == 1) 
+  && (w.len() > 6)
+')
+
+Tìm các từ có âm tiết đầu có dấu ~ âm tiết thứ hai có dấu .
+
+dict.search('
+  (w.slen() == 2) 
+  && (w.syls(0).getTone() == "~")
+  && (w.syls(1).getTone() == ".")
+')
+
+Tìm 100 từ có 2 âm tiết bắt đầu bằng d
+
+dict.search('
+  (w.slen() == 2) 
+  && (w.syls(0).head() == "d")
+  && (w.syls(1).head() == "d")
+', 100)
+
+Tìm các từ, sau khi loại bỏ dấu, thì có đuôi "ương"
+
+dict.search('
+  (w.slen() == 2) 
+  && (w.syls(1).removeTones().tail().string() == "ương")
+')
+
+Tìm 100 từ có 2 âm tiết sau khi loại bỏ dấu, thì mỗi âm tiết đều có đuôi "e"
+
+dict.search('
+  (w.slen() == 2)
+  && (w.syls(0).removeTones().tail().toAscii() == "e") 
+  && (w.syls(1).removeTones().tail().toAscii() == "e")
+', 100)
+      </pre>
+      <textarea id="q" name="q" autocomplete="off" rows="5"></textarea>
+      <input type="submit" value="query" />
     </form>
+    <pre id="results">
+    </pre>
     </div>
   </div>
     <footer class="footer">
@@ -38,15 +96,18 @@
         <p class="text-muted">&copy; 2015 Anna - Questions and Comments? htruong acong tnhh cham net</p>
       </div>
     </footer>
-    <!-- Anna -->
-    <script src="underscore.js"></script>
-    <script src="anna.js"></script>
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+
+    <!-- Anna -->
+    <script src="underscore.js"></script>
+    <script src="anna.js"></script>
+    <script src="anna_viet_utils.js"></script>
+
 
   </body>
 </html>

@@ -39,7 +39,9 @@ body {
 
 #q {
   width: 100%;
-  font-size: 1.3em;
+  font-size: 1em;
+  width: 100%;
+  font-family: monospace;
 }
 
 header strong {
