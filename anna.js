@@ -97,7 +97,7 @@ Word.prototype = {
 		return ret;
 	},
 	joinSyls: function() {
-		return new Word(this.w.split(" ").join());
+		return new Word(this.w.split(" ").join(""));
 	},
 	anagram: function() {
 		var seen = [];

@@ -38,6 +38,13 @@ dict.search('
   && (w.syls(0).toAscii().anagram() == w.syls(1).toAscii().anagram()
 )')
 
+Tìm các từ mà nếu bỏ dấu thì viết xuôi ngược như nhau
+
+dict.search('
+  (w.len() >= 2)
+  && (w.toAscii().joinSyls().reverse() == w.toAscii().joinSyls().string()) 
+', 100)
+
 
 Tìm 100 từ có 3 âm tiết, âm tiết đầu tiên bắt đầu bằng "d"
 
