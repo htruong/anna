@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="display.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=EB+Garamond&subset=cyrillic-ext,latin,latin-ext,vietnamese' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=EB+Garamond&subset=cyrillic-ext,latin,latin-ext,vietnamese' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,8 +65,8 @@ Tìm 100 từ có 2 âm tiết bắt đầu bằng d
 
 dict.search('
   (w.slen() == 2) 
-  && (w.syls(0).head() == "d")
-  && (w.syls(1).head() == "d")
+  && (w.syls(0).head().string() == "d")
+  && (w.syls(1).head().string() == "d")
 ', 100)
 
 Tìm các từ, sau khi loại bỏ dấu, thì có đuôi "ương"
@@ -80,9 +80,19 @@ Tìm 100 từ có 2 âm tiết sau khi loại bỏ dấu, thì mỗi âm tiết 
 
 dict.search('
   (w.slen() == 2)
-  && (w.syls(0).removeTones().tail().toAscii() == "e") 
-  && (w.syls(1).removeTones().tail().toAscii() == "e")
+  && (w.syls(0).removeTones().tail().toAscii().string() == "e") 
+  && (w.syls(1).removeTones().tail().toAscii().string() == "e")
 ', 100)
+
+
+Tìm 1000 từ có 2 âm tiết mà âm tiết thứ hai có 1 ký tự và hai âm tiết cùng dấu '
+
+dict.search('
+  (w.slen() == 2) 
+  && (w.syls(1).len() == 1)
+  && (w.syls(0).getTone() == w.syls(1).getTone()) 
+  && (w.syls(0).getTone() == "\'")
+', 1000)
       </pre>
       <textarea id="q" name="q" autocomplete="off" rows="5"></textarea>
       <input type="submit" value="query" />
